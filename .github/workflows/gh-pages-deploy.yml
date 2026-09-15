@@ -1,3 +1,4 @@
+# source: https://github.com/diversable/deploy_leptos_csr_to_gh_pages
 name: Release to Github Pages
 
 on:
@@ -45,7 +46,7 @@ jobs:
 
       # If using tailwind...
       - name: Download and install tailwindcss binary
-        run: npm install -D tailwindcss && npx tailwindcss -i <INPUT/PATH.css> -o <OUTPUT/PATH.css>  # run tailwind
+        run: npm install -D tailwindcss && npx tailwindcss -i ./input.css> -o ./style/output.css  # run tailwind
 
 
       - name: Download and install Trunk binary
@@ -59,15 +60,6 @@ jobs:
         # will obviously return error 404 not found.
         run: ./trunk build --release --public-url "${GITHUB_REPOSITORY#*/}"
 
-
-      # Deploy to gh-pages branch
-      # - name: Deploy 🚀
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   with:
-      #     folder: dist
-
-
-      # Deploy with Github Static Pages
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
