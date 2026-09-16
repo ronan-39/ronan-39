@@ -1,8 +1,34 @@
 use leptos::prelude::*;
 use leptos_meta::Title;
+use leptos_router::components::*;
+use leptos_router::path;
 
 #[component]
 fn App() -> impl IntoView {
+	view! {
+		<Router>
+			<main>
+				<Routes fallback=|| "Not found.">
+					<Route path=path!("/") view=Main/>
+					<Route path=path!("/ronan_john_resume.pdf") view=ResumePDF/>
+				</Routes>
+			</main>
+		</Router>
+	}
+}
+
+#[component]
+fn ResumePDF() -> impl IntoView {
+    view! {
+		<iframe
+			src="/ronan_john_resume_sep26.pdf"
+			style="width: 100%; height: 100vh; border: none;"
+		></iframe>
+    }
+}
+
+#[component]
+fn Main() -> impl IntoView {
 	view! {
 		<Title text="Ronan John"/>
 		<div class="max-w-190 flex flex-col mx-auto w-11/12 h-full rounded-md p-2 space-y-10 mb-20">
@@ -17,7 +43,6 @@ fn App() -> impl IntoView {
 	}
 }
 
-
 #[component]
 fn Splash() -> impl IntoView {
 	view! {
@@ -26,7 +51,7 @@ fn Splash() -> impl IntoView {
 			<p>"Ph.D. Student, Rutgers University"</p>
 			<div class="gap-20"/>
 			<div class="flex flex-row gap-2 mt-2">
-				<ButtonLink title="Resume" link="myresume.pdf"/>
+				<ButtonLink title="Resume" link="ronan_john_resume.pdf"/>
 				<ButtonLink title="GitHub" link="https://github.com/ronan-39"/>
 				<ButtonLink title="LinkedIn" link="https://www.linkedin.com/in/ronan-john/"/>
 			</div>
