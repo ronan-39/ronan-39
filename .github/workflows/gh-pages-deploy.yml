@@ -46,7 +46,9 @@ jobs:
 
       # If using tailwind...
       - name: Download and install tailwindcss binary
-        run: npm install -D tailwindcss && npx tailwindcss -i ./input.css> -o ./style/output.css  # run tailwind
+        run: |
+          npm install -D tailwindcss @tailwindcss/cli
+          npx @tailwindcss/cli -i ./input.css -o ./style/output.css
 
 
       - name: Download and install Trunk binary
@@ -58,7 +60,8 @@ jobs:
         # this is necessary for github pages where the site is deployed to username.github.io/repo_name and all files must be requested
         # relatively as favicon.ico. if we skip public-url option, the href paths will instead request username.github.io/favicon.ico which
         # will obviously return error 404 not found.
-        run: ./trunk build --release --public-url "${GITHUB_REPOSITORY#*/}"
+        # run: ./trunk build --release --public-url "${GITHUB_REPOSITORY#*/}"
+        run: ./trunk build --release --public-url "/"
 
 
       - name: Setup Pages
